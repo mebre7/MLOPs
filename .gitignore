@@ -1,3 +1,7 @@
+try.py
+data/
+demo.ipynb
+notes.md
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -150,7 +154,7 @@ activemq-data/
 # Environments
 .env
 .envrc
-.venv
+.venv/
 env/
 venv/
 ENV/
