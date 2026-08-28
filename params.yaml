@@ -1,0 +1,17 @@
+data:
+  url: "https://raw.githubusercontent.com/mlflow/mlflow/master/tests/datasets/winequality-red.csv"
+
+model:
+  alpha: 0.5
+  l1_ratio: 0.5
+  random_state: 42
+
+split:
+  test_size: 0.2
+  random_state: 40
+
+mlflow:
+  experiment_name: "ElasticNet Wine Quality"
+  tracking_uri: "https://dagshub.com/mebratucheka7"
+  registered_model_name: "ElasticnetWineModel"
+  

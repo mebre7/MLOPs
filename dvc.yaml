@@ -1,0 +1,33 @@
+stages:
+  stage_01_ingest:
+    cmd: python3 pipeline/stage1.py
+    deps:
+      - pipeline/stage1.py
+    outs:
+      - data/raw/winequality-red.csv
+  
+  stage_02_preprocess:
+    cmd: python3 pipeline/stage2.py
+    deps:
+      - pipeline/stage2.py
+      - data/raw/winequality-red.csv
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+  stage_03_train:
+    cmd: python3 pipeline/stage3.py
+    deps:
+      - pipeline/stage3.py
+      - data/processed/train.csv
+    outs:
+      - models/model.pkl
+  
+  stage_04_evaluate:
+    cmd: python3 pipeline/stage4.py
+    deps:
+      - pipeline/stage4.py
+      - data/processed/test.csv
+      - models/model.pkl
+    outs:
+      - reports/metrics.json:
+          cache: false

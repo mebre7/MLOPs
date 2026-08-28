@@ -1,0 +1,70 @@
+schema: '2.0'
+stages:
+  stage_01_ingest:
+    cmd: python3 pipeline/stage1.py
+    deps:
+    - path: pipeline/stage1.py
+      hash: md5
+      md5: a4f77395a698ab4ad14a167c0bf661fc
+      size: 349
+    outs:
+    - path: data/raw/winequality-red.csv
+      hash: md5
+      md5: 7d814a1bda02145efe703f4e1c01847a
+      size: 91999
+  stage_02_preprocess:
+    cmd: python3 pipeline/stage2.py
+    deps:
+    - path: data/raw/winequality-red.csv
+      hash: md5
+      md5: 7d814a1bda02145efe703f4e1c01847a
+      size: 91999
+    - path: pipeline/stage2.py
+      hash: md5
+      md5: 7d8589c63ffa832b32af49f55afe1c15
+      size: 434
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 52c9b603af9e57681fc5c35624f20b71
+      size: 23118
+    - path: data/processed/train.csv
+      hash: md5
+      md5: e2f31033b36b7e853a133614f9177673
+      size: 69027
+  stage_03_train:
+    cmd: python3 pipeline/stage3.py
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: e2f31033b36b7e853a133614f9177673
+      size: 69027
+    - path: pipeline/stage3.py
+      hash: md5
+      md5: 3e02a4f53e02e6c35819b19b5076cf1b
+      size: 474
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 6d79d85b81404a70d3ae830773a0e574
+      size: 907
+  stage_04_evaluate:
+    cmd: python3 pipeline/stage4.py
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 52c9b603af9e57681fc5c35624f20b71
+      size: 23118
+    - path: models/model.pkl
+      hash: md5
+      md5: 6d79d85b81404a70d3ae830773a0e574
+      size: 907
+    - path: pipeline/stage4.py
+      hash: md5
+      md5: de54eaac34b88be134124c216e03c923
+      size: 747
+    outs:
+    - path: reports/metrics.json
+      hash: md5
+      md5: 2795abfb24a8ef910448efc53659df46
+      size: 71

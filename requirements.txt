@@ -2,3 +2,5 @@ mlflow
 dagshub
 scikit-learn
 dvc
+python-box
+pyYAML
