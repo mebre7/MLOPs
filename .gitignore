@@ -1,5 +1,5 @@
 try.py
-data/
+data/winequality-red.csv
 demo.ipynb
 notes.md
 # Byte-compiled / optimized / DLL files
